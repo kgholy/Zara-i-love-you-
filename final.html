@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Моё письмо тебе</title>
+
+<style>
+body{
+margin:0;
+position:relative;
+overflow:hidden;
+min-height:100vh;
+background:linear-gradient(to bottom,#ffdce6,#fff0f5);
+font-family:Arial,sans-serif;
+text-align:center;
+display:flex;
+justify-content:center;
+align-items:center;
+}
+
+.box{
+position:relative;
+z-index:2;
+background:white;
+padding:30px;
+border-radius:20px;
+max-width:600px;
+width:90%;
+box-sizing:border-box;
+}
+
+#final-text{
+font-size:18px;
+line-height:1.6;
+color:#5a3a42;
+}
+
+.heart{
+position:fixed;
+top:-10px;
+z-index:1;
+pointer-events:none;
+color:#ff8fab;
+animation:fall linear infinite;
+}
+
+@keyframes fall{
+to{transform:translateY(110vh);}
+}
+</style>
+</head>
+
+<body>
+
+<div class="box">
+<h1>Моё письмо тебе 💌</h1>
+<p id="final-text"></p>
+</div>
+
+<script>
+const finalMessage = "Спасибо, что ты есть. Ты стала частью моих мыслей, моих дней и моего сердца. С тобой мир стал теплее, спокойнее и красивее. И я просто хочу, чтобы ты всегда помнила — ты очень важна для меня ❤️";
+
+let x=0;
+
+function typeFinal(){
+if(x<finalMessage.length){
+document.getElementById("final-text").innerHTML += finalMessage.charAt(x);
+x++;
+setTimeout(typeFinal,60);
+}
+}
+typeFinal();
+
+function createHeart(){
+const heart=document.createElement("div");
+heart.className="heart";
+heart.innerHTML="❤";
+heart.style.left=Math.random()*window.innerWidth+"px";
+heart.style.fontSize=(15+Math.random()*20)+"px";
+heart.style.animationDuration=(4+Math.random()*3)+"s";
+document.body.appendChild(heart);
+
+setTimeout(()=>{heart.remove()},7000);
+}
+setInterval(createHeart,400);
+</script>
+
+</body>
+</html>
